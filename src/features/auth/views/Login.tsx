@@ -5,7 +5,10 @@ const Login: React.FC = () => {
   return (
     <div>
       <h1>Staticks CMS</h1>
-      <LoginForm />
+      <div>
+        <h2>로그인</h2>
+        <LoginForm />
+      </div>
     </div>
   )
 }

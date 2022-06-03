@@ -1,0 +1,22 @@
+diff --git a/node_modules/path-type/index.js b/node_modules/path-type/index.js
+index b8f34b2..1a7c33f 100644
+--- a/node_modules/path-type/index.js
++++ b/node_modules/path-type/index.js
+@@ -11,7 +11,7 @@ async function isType(fsStatType, statsMethodName, filePath) {
+ 		const stats = await promisify(fs[fsStatType])(filePath);
+ 		return stats[statsMethodName]();
+ 	} catch (error) {
+-		if (error.code === 'ENOENT') {
++		if (error.code === 'ENOENT' || error.code === 'ERR_INVALID_ARG_VALUE') {
+ 			return false;
+ 		}
+ 
+@@ -27,7 +27,7 @@ function isTypeSync(fsStatType, statsMethodName, filePath) {
+ 	try {
+ 		return fs[fsStatType](filePath)[statsMethodName]();
+ 	} catch (error) {
+-		if (error.code === 'ENOENT') {
++		if (error.code === 'ENOENT' || error.code === 'ERR_INVALID_ARG_VALUE') {
+ 			return false;
+ 		}
+ 
