@@ -1,7 +1,14 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { getToken } from './storageUtil'
+import toast from 'react-hot-toast'
 // interceptor 구성
 // 요청 전에 실행
+
+export interface ErrorResponse {
+  error: string
+  message: string
+  statusCode: number
+}
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_HOST,
@@ -27,7 +34,7 @@ axiosInstance.interceptors.response.use(
   (response: any) => {
     return response
   },
-  (error: any) => {
+  (error: AxiosError<ErrorResponse>) => {
     return Promise.reject(error)
   },
 )
