@@ -6,7 +6,7 @@ import {
   Authentication,
   LoginPayload,
   LoginResponse,
-  SinupPayload,
+  SignupPayload,
 } from '../types'
 
 export const authService = {
@@ -19,7 +19,7 @@ export const authService = {
 
     return res.data
   },
-  async signup(payload: SinupPayload) {
+  async signup(payload: SignupPayload) {
     const res: AxiosResponse<LoginResponse> = await Axios.post('/auth', {
       email: payload.email,
       password: payload.password,
@@ -63,7 +63,7 @@ export function useLoginService(
   )
 }
 
-export function useSignupService(payload: SinupPayload) {
+export function useSignupService(payload: SignupPayload) {
   const { data, status, error, isLoading, refetch } = useQuery(
     [
       'auth',

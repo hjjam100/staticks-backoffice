@@ -13,7 +13,7 @@ export interface LoginResponse {
   token: string
 }
 
-export interface SinupPayload {
+export interface SignupPayload {
   email: string
   password: string
   name: string
