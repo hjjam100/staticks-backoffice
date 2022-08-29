@@ -103,12 +103,14 @@ export function useProjectMembersService(
     [
       'projects',
       'getProjectMembers',
+      `projectId=${projectId}`,
       `offset=${payload?.offset}`,
       `limit=${payload?.limit}`,
     ],
     () => ProjectService.getProjectMembers(payload),
     {
-      enabled: !!getProjectToken(projectId),
+      enabled: getToken() !== null && !!getProjectToken(projectId),
+      keepPreviousData: true,
       retry: false,
     },
   )
